@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 
 public class MascotActivity extends Activity {
@@ -32,5 +34,10 @@ public class MascotActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void showMascot(View view) {
+        TextView textView = (TextView) findViewById(R.id.mascotText);
+        textView.setText("Some Text");
     }
 }
