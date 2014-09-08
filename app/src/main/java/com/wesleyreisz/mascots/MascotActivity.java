@@ -1,19 +1,41 @@
 package com.wesleyreisz.mascots;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.wesleyreisz.mascots.factory.MascotFactory;
+import com.wesleyreisz.mascots.model.Droid;
+import com.wesleyreisz.mascots.model.Duke;
+import com.wesleyreisz.mascots.model.Mascot;
+import com.wesleyreisz.mascots.model.OctoCat;
+import com.wesleyreisz.mascots.utils.TextUtils;
 
 
 public class MascotActivity extends Activity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mascot);
+
+        Button btn = (Button)findViewById(R.id.btnFinder);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Mascot mascot = MascotFactory.getInstance();
+                Toast toast = Toast.makeText(view.getContext(),mascot.powerCheer(),Toast.LENGTH_LONG);
+                toast.show();
+                ImageView imageView = (ImageView) findViewById(R.id.imgView);
+                imageView.setImageResource(mascot.showMascotImage());
+            }
+        });
     }
 
 
@@ -34,10 +56,5 @@ public class MascotActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public void showMascot(View view) {
-        TextView textView = (TextView) findViewById(R.id.mascotText);
-        textView.setText("Some Text");
     }
 }
